@@ -21,6 +21,6 @@ module.exports = (req, res, next) => {
     })
   } else{
     //no token?
-    res.status(401).json({message: 'Only token people are allowed'})
+    res.status(401).json({message: 'You are not authorized'})
   }
 };
