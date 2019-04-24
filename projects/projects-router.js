@@ -65,13 +65,13 @@ router.post('/', async (req, res) => {
       if (project) {
         res.status(200).json(project);
       } else {
-        res.status(404).json({ message: 'The hub could not be found' });
+        res.status(404).json({ message: 'The project could not be found' });
       }
     } catch (error) {
       // log error to database
       console.log(error);
       res.status(500).json({
-        message: 'Error updating the hub',
+        message: 'Error updating the project',
       });
     }
   });
