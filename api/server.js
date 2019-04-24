@@ -1,26 +1,14 @@
-    
-const express = require('express');
-const helmet = require('helmet');
-const cors = require('cors');
-
-const authRouter = require('../auth/auth-router.js');
-const usersRouter = require('../users/users-router.js');
-const projectsRouter = require('../projects/projects-router.js');
-const studentsRouter = require('../students/students-router.js');
-
+const express = require ('express');
 const server = express();
+const projectRouter = require('../data/routers/project-router.js');
+const studentRouter = require('../data/routers/student-router.js');
 
-server.use(helmet());
 server.use(express.json());
-server.use(cors());
+server.use('/api/projects', projectRouter);
+server.use('/api/students', studentRouter);
 
-server.use('/api', authRouter);
-server.use('/api/users', usersRouter);
-server.use('/api/projects', projectsRouter);
-server.use('/api/students', studentsRouter);
-
-server.get('/', (req, res) => {
-  res.send("It's alive!");
-});
+server.get('/', (req,res, next) => {
+    res.send(`<h2>Server is Working</h2>`)
+})
 
 module.exports = server;
