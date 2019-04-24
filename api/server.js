@@ -6,6 +6,7 @@ const cors = require('cors');
 const authRouter = require('../auth/auth-router.js');
 const usersRouter = require('../users/users-router.js');
 const projectsRouter = require('../projects/projects-router.js');
+const studentsRouter = require('../students/students-router.js');
 
 const server = express();
 
@@ -16,6 +17,7 @@ server.use(cors());
 server.use('/api', authRouter);
 server.use('/api/users', usersRouter);
 server.use('/api/projects', projectsRouter);
+server.use('/api/students', studentsRouter);
 
 server.get('/', (req, res) => {
   res.send("It's alive!");
