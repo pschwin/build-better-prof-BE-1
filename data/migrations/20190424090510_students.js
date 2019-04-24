@@ -7,6 +7,23 @@ exports.up = function(knex) {
         .string('name', 128).notNullable()
       
     })
+    .createTable('messages', tbl => {
+        tbl.increments();
+        tbl
+          .string('sender')
+          .notNullable()
+          .index();
+        tbl.text('text').notNullable();
+        tbl.timestamps(true, true);
+  
+        tbl
+          .integer('student_id')
+          .unsigned()
+          .references('id')
+          .inTable('students')
+          .onDelete('CASCADE')
+          .onUpdate('CASCADE');
+      });
     
   };
   
