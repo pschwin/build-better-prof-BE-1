@@ -3,7 +3,7 @@ module.exports = {
     booleanToint,
     projectToBody,
     studentToBody,
-    reminderToBody
+    userToBody
   };
   
   function intToBoolean(int) {
@@ -34,23 +34,23 @@ module.exports = {
   
   function projectToBody(project) {
 
-    const result = {
+    // const result = {
+    //     ...project,
+    //     completed: intToBoolean(project.completed),
+    //   };
+    
+    //   if (project.reminders) {
+    //     result.reminders = project.reminders.map(project => ({
+    //       ...project,
+    //       completed: intToBoolean(project.completed),
+    //     }));
+    //   }
+    //   return result;
+
+      return {
         ...project,
         completed: intToBoolean(project.completed),
       };
-    
-      if (project.reminders) {
-        result.reminders = project.reminders.map(project => ({
-          ...project,
-          completed: intToBoolean(project.completed),
-        }));
-      }
-      return result;
-
-      // return {
-      //   ...project,
-      //   completed: intToBoolean(project.completed),
-      // };
     
     // return {
     //   ...project,
@@ -58,10 +58,10 @@ module.exports = {
     // };
   }
 
-  function reminderToBody(reminder) {
+  function userToBody(reminder) {
     return {
       ...reminder,
-      completed: intToBoolean(reminder.completed),
+      //completed: intToBoolean(reminder.completed),
     };
   }
   

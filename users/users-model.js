@@ -41,7 +41,7 @@ function findById(id) {
       let [user, reminder] = results;
       user.reminders = reminder;
 
-      return mappers.reminderToBody(reminder);
+      return mappers.userToBody(user);
     });
   }
 
@@ -53,7 +53,7 @@ function findById(id) {
 function getUserActions(userId) {
     return db('reminder')
       .where('user_id', userId)
-      .then(reminders => reminders.map(reminder => mappers.reminderToBody(reminder)));
+      .then(reminders => reminders.map(reminder => mappers.userToBody(reminder)));
   }
 
 
