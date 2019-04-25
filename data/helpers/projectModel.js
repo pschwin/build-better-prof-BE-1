@@ -4,22 +4,36 @@ const mappers = require('./mappers');
 module.exports = {
   get,
   insert,
-  remove
+  remove,
+  getProjectActions
 }
 function get(id) {
-    let query = db('project');
+  let query = db('Project as p');
 
-    if (id) {
-      return query
-        .where('id', id)
-        .first()
-        .then(project => mappers.projectToBody(project));
-    }
+  if (id) {
+    query.where('p.id', id).first();
 
-    return query.then(projects => {
-      return projects.map(project => mappers.projectToBody(project));
+    const promises = [query, this.getProjectActions(id)]; // [ projects, actions ]
+
+    return Promise.all(promises).then(function(results) {
+      let [project, reminder] = results;
+      project.reminders = reminder;
+
+      return mappers.projectToBody(project);
     });
   }
+
+  return query.then(projects => {
+    return projects.map(project => mappers.projectToBody(project));
+  });
+}
+
+function getProjectActions(projectId) {
+    return db('reminder')
+      .where('project_id', projectId)
+      .then(reminders => reminders.map(reminder => mappers.projectToBody(reminder)));
+  }
+
 function insert(project) {
     return db('project')
       .insert(project)

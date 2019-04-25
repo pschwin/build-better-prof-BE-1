@@ -30,20 +30,13 @@ module.exports = {
     return result;
   }
 
-
+  
   
   function projectToBody(project) {
-    const result ={
-        ...project,
-        completed: intToBoolean(project.completed),
+    return {
+      ...project,
+      completed: intToBoolean(project.completed),
     };
-    if(project.reminders){
-        result.reminders = project.reminders.map(project =>({
-            ...PromiseRejectionEvent,
-            completed: intToBoolean(project.completed)
-        }))
-    }
-    return result;
   }
 
   function reminderToBody(reminder) {
