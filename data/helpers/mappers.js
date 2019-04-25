@@ -3,6 +3,7 @@ module.exports = {
     booleanToint,
     projectToBody,
     studentToBody,
+    reminderToBody
   };
   
   function intToBoolean(int) {
@@ -28,11 +29,27 @@ module.exports = {
   
     return result;
   }
+
+
   
   function projectToBody(project) {
+    const result ={
+        ...project,
+        completed: intToBoolean(project.completed),
+    };
+    if(project.reminders){
+        result.reminders = project.reminders.map(project =>({
+            ...PromiseRejectionEvent,
+            completed: intToBoolean(project.completed)
+        }))
+    }
+    return result;
+  }
+
+  function reminderToBody(reminder) {
     return {
-      ...project,
-      completed: intToBoolean(project.completed),
+      ...reminder,
+      completed: intToBoolean(reminder.completed),
     };
   }
   
