@@ -33,10 +33,29 @@ module.exports = {
   
   
   function projectToBody(project) {
-    return {
-      ...project,
-      completed: intToBoolean(project.completed),
-    };
+
+    const result = {
+        ...project,
+        completed: intToBoolean(project.completed),
+      };
+    
+      if (project.reminders) {
+        result.reminders = project.reminders.map(project => ({
+          ...project,
+          completed: intToBoolean(project.completed),
+        }));
+      }
+      return result;
+
+      // return {
+      //   ...project,
+      //   completed: intToBoolean(project.completed),
+      // };
+    
+    // return {
+    //   ...project,
+    //   completed: intToBoolean(project.completed),
+    // };
   }
 
   function reminderToBody(reminder) {

@@ -4,9 +4,9 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       return Promise.all([
         // Inserts seed entries
-        knex('reminder').insert({remindDays: 5, project_id: 1, description:"Remember, you have to complete your project today!"}),
-        knex('reminder').insert({remindDays: 2, project_id: 2, description:"Remember, you have to complete your project tomorrow!"}),
-        knex('reminder').insert({remindDays: 1, project_id: 3, description:"Remember, you have to complete your project in 3 days!"}),
+        knex('reminder').insert({remindDays: 5, project_id: 1, user_id: 1, description:"Remember, you have to complete your project today!"}),
+        knex('reminder').insert({remindDays: 2, project_id: 2, user_id: 2, description:"Remember, you have to complete your project tomorrow!"}),
+        knex('reminder').insert({remindDays: 1, project_id: 3, user_id: 3, description:"Remember, you have to complete your project in 3 days!"}),
         
       ]);
     });
