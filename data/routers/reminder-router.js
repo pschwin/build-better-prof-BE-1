@@ -1,10 +1,10 @@
 const express = require('express');
-
+const restricted = require('../../auth/restricted-middleware');
 const Reminder = require('../helpers/reminderModel.js');
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', restricted,  async (req, res) => {
     try {
         const reminder = await Reminder.get(req.params.query);
         res.status(200).json(reminder);

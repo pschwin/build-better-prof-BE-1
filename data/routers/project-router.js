@@ -1,10 +1,10 @@
 const express = require('express');
 
 const Project = require('../helpers/projectModel.js');
-
+const restricted = require('../../auth/restricted-middleware');
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', restricted, async (req, res) => {
     try {
         const project = await Project.get(req.params.query);
         res.status(200).json(project);
